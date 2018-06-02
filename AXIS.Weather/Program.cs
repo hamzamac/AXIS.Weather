@@ -10,17 +10,12 @@ namespace AXIS.Weather
 {
     class Program
     {
-        
-        static async Task<string> GetData()
-        {
-
-
-            return await GetDataAsync("api/version/1.0/parameter/1/station/159880/period/latest-months/data.json");
-        }
-
         static void Main(string[] args)
         {
-            Console.Write(GetData().GetAwaiter().GetResult());
+            Report report = new Report();
+
+            Console.Write(report.Task1());
+
             Console.Read();
         }
     }

@@ -15,9 +15,13 @@ namespace AXIS.Weather
 
         public ApiClient()
         {
+            //create and configure HTTP client
             _client = new HttpClient();
+
             _client.BaseAddress = new Uri("https://opendata-download-metobs.smhi.se/");
+
             _client.DefaultRequestHeaders.Accept.Clear();
+
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
