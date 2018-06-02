@@ -8,5 +8,6 @@ namespace AXIS.Weather
 {
     class Report
     {
+
     }
 }
