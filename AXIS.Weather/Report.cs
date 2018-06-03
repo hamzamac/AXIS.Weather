@@ -11,7 +11,12 @@ namespace AXIS.Weather
 {
     class Report
     {
-        private ApiClient _api = new ApiClient();
+        private ApiClient _api;
+
+        public Report()
+        {
+            _api = new ApiClient();
+        }
 
         private string Query(string parameter, string station, string period)
         {
@@ -21,7 +26,7 @@ namespace AXIS.Weather
         }
 
 
-
+        //compute and return the  average temperature in Sweden
         public string AverageTemperatureInLastHour()
         {
             // Rreceve data as JObject
@@ -30,12 +35,8 @@ namespace AXIS.Weather
                 .GetResult();
 
             //extractstation temperature values
-            var stations = data["station"]
-                .Children().Values("name").Select(s => (string)s).ToList();
-
             var temperatures = data["station"]
                 .Children().Values("value").Children().Values("value").Select(v => (string)v).ToList();
-
 
             //calculate average
             double totalTemperature = temperatures.Select(t => double.Parse(t, CultureInfo.InvariantCulture)).Sum();
@@ -44,7 +45,7 @@ namespace AXIS.Weather
             return $"The average temperature in Sweden for the last hours was {averageTemperature} degrees";
         }
 
-
+        //compute and return the total rainfall in Lund
         public string TotalRainfallForTheLastMonth()
         {
             string totalTemperature;
@@ -80,7 +81,8 @@ namespace AXIS.Weather
             return $"Between {fromDate} and {toDate} the total rainfall in {city} was {totalTemperature} millimeters"; 
         }
 
-        /**Hello*/
+
+        //get and display stations temperature
         public async Task StationsTemperatureAsync(CancellationToken cancellationToken)
         {
             // Rreceve data as JObject
@@ -94,8 +96,9 @@ namespace AXIS.Weather
             var temperatures = data["station"]
                 .Children().Values("value").Children().Values("value").Select(v => (string)v).ToList();
 
-
-            for(int i = 0;i<=temperatures.Count();i++)
+            //print the stations temperatures
+            Console.WriteLine("Weather Stations Temperature ( Press any key to cancel!)");
+            for (int i = 0;i<=temperatures.Count();i++)
             {
                 Console.WriteLine($"{stations[i].ToString()} : {temperatures[i].ToString()}");
                 await Task.Delay(100);

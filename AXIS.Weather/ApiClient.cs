@@ -11,11 +11,11 @@ namespace AXIS.Weather
 {
     class ApiClient
     {
-        HttpClient _client; 
+        HttpClient _client;
 
+        //create and configure HTTP client
         public ApiClient()
         {
-            //create and configure HTTP client
             _client = new HttpClient();
 
             _client.BaseAddress = new Uri("https://opendata-download-metobs.smhi.se/");
@@ -25,6 +25,7 @@ namespace AXIS.Weather
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        //Get data from the server
         public async Task<JObject> GetDataAsync(string path)
         {
             string contentString = "";
@@ -35,6 +36,7 @@ namespace AXIS.Weather
                 contentString = await response.Content.ReadAsStringAsync();
             }
 
+            //return a JSON object
             return JObject.Parse(contentString);
         }
     }

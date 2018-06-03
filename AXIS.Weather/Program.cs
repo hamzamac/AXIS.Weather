@@ -11,8 +11,6 @@ namespace AXIS.Weather
 {
     class Program
     {
-        private static CancellationTokenSource cts;
-
         static void Main(string[] args)
         {
 
