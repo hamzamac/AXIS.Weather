@@ -14,7 +14,7 @@ namespace AXIS.Weather
         {
             Report report = new Report();
 
-            Console.Write(report.Task1());
+            Console.Write(report.Task2());
 
             Console.Read();
         }
