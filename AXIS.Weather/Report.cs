@@ -70,7 +70,7 @@ namespace AXIS.Weather
             long miliseconds = (long)data["period"]["from"];
             fromDate = DateTimeOffset.FromUnixTimeMilliseconds(miliseconds).Date.ToString(dateFormater);
             
-            // get the name oof the city
+            
             miliseconds = (long)data["period"]["to"];
             toDate = DateTimeOffset.FromUnixTimeMilliseconds(miliseconds).Date.ToString(dateFormater);
 
